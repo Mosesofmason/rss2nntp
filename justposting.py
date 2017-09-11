@@ -28,9 +28,6 @@ try:
                 else:
                     time.sleep(600)
                 ns.post(f) 
-                print(os.path.join(directory, file) + os.linesep)
-                f = open(os.path.join(directory, file))
-                ns.post(f) 
                 f.close()
                 n = n+1
                 os.remove (os.path.join(directory, file))
