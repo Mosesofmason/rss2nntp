@@ -16,6 +16,7 @@ org = r'Illuminati'
 xface = "]c\"B8MZeR}>9;^p0Wtq#Vgi)J%R->C'u9b\"d#9b?4_HclroWBGm\"<c9g|w>9X\"P#NsWdp\'mOM*N:Sw0gkI@`^|6FYsd7bs\"S0u8:<u!l+9`,%f4z3lX80n1P0cX6q;O7Vmy<;iyx5EStx,9rzjcl$tO[a"
 
 directory = "./outdir/"
+extname = ".eml"
 
 feeds = feedparser.parse(rss_url)
 
@@ -35,6 +36,11 @@ print(len(feeds['entries']))
 
 if not os.path.exists(directory):
     os.makedirs(directory)
+    
+filelist = [ f for f in os.listdir(directory) if f.endswith(extname) ]
+for f in filelist:
+    os.remove(os.path.join(directory, f))
+    print f + ' deleted.'
 
 for feed in feeds.entries:
     itemtitle = feed["title"].encode('utf-8')
